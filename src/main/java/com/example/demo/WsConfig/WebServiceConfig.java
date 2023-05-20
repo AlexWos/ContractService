@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.WsConfig;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
