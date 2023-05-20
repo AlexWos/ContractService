@@ -1,11 +1,11 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns:c="http://xmlns.esb.ru/ext/ContractService/"
-            targetNamespace="http://xmlns.esb.ru/ext/ContractService/"
+            xmlns:c="http://www.springframework.org/schema/c"
+            targetNamespace="http://localhost/ContractSevice"
             elementFormDefault="qualified">
     <xsd:element name="CreateNewContractRequest">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="Id" type="c:UuidType"/>
+                <xsd:element name="Id" type="c:Uuid"/>
                 <xsd:element name="DateStart" type="xsd:date" />
                 <xsd:element name="DateEnd" type="xsd:date" />
                 <xsd:element name="ContractNumber" type="xsd:string"/>
