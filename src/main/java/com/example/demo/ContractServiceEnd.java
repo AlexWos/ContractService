@@ -19,11 +19,11 @@ public class ContractServiceEnd {
     public ContractServiceEnd(ContractService contractService) {
         this.contractService = contractService;
     }
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getContractRequest")
-    @ResponsePayload
-    public CreateNewContractResponse getContract(@RequestPayload CreateNewContractRequest request) {
-
-        return ;
-    }
+//    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getContractRequest")
+//    @ResponsePayload
+//    public CreateNewContractResponse getContract(@RequestPayload CreateNewContractRequest request) {
+//
+//        return ;
+//    }
 
 }
