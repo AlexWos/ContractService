@@ -1,5 +1,6 @@
 package com.example.demo.WsConfig;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -11,30 +12,28 @@ import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
-
-@EnableWs
 @Configuration
-public class WebServiceConfig extends WsConfigurerAdapter {
+@EnableWs
+@Slf4j
+public class WsConfig extends WsConfigurerAdapter{
     @Bean
-    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
+    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext){
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/ws/*");
+        return new ServletRegistrationBean(servlet, "/ws/*");
     }
-
-    @Bean(name = "contract")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema contractSchema) {
+    @Bean(name= "contractService")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema contractServiceSchema){
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("ContractService");
+        wsdl11Definition.setPortTypeName("Contract");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://demo.ru/ContractService");
-        wsdl11Definition.setSchema(contractSchema);
+        wsdl11Definition.setTargetNamespace("http://demo.ru/ContractService/");
+        wsdl11Definition.setSchema(contractServiceSchema);
         return wsdl11Definition;
     }
-
     @Bean
-    public XsdSchema contractSchema() {
+    public XsdSchema contractServiceSchema(){
         return new SimpleXsdSchema(new ClassPathResource("ContractService.xsd"));
     }
 }
